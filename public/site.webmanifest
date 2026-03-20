@@ -1,0 +1,12 @@
+{
+  "name": "bettervibe",
+  "short_name": "bettervibe",
+  "description": "Write production-ready code with AI. Avoiding the vibe coding hangover.",
+  "icons": [
+    { "src": "/public/favicon-32x32.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "/public/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ],
+  "theme_color": "#0D0F11",
+  "background_color": "#0D0F11",
+  "display": "standalone"
+}
