@@ -114,23 +114,18 @@
   }
 
   .footer-left {
-    font-size: 13px; font-weight: 700; letter-spacing: -0.5px;
-    color: var(--text-tertiary);
+    font-size: 11px; color: var(--text-muted); letter-spacing: 0.3px;
   }
   .footer-left .dot { color: var(--amber); }
 
-  .footer-links {
-    display: flex; gap: 24px; list-style: none;
+  .footer-legal {
+    display: flex; gap: 24px;
   }
-  .footer-links a {
+  .footer-legal a {
     font-size: 11px; color: var(--text-muted); text-decoration: none;
     letter-spacing: 0.5px; transition: color 0.2s;
   }
-  .footer-links a:hover { color: var(--amber); }
-
-  .footer-right {
-    font-size: 11px; color: var(--text-muted);
-  }
+  .footer-legal a:hover { color: var(--amber); }
 
   @media (max-width: 900px) {
     nav { padding: 0 24px; }
@@ -202,12 +197,12 @@
 </main>
 
 <footer>
-  <div class="footer-left">bettervibe<span class="dot">.</span>org</div>
-  <ul class="footer-links">
-    <li><a href="/">Home</a></li>
-    <li><a href="mailto:dominik.grusemann@gmail.com">Contact</a></li>
-  </ul>
-  <div class="footer-right">May 2026 &middot; Munich</div>
+  <div class="footer-left">bettervibe<span class="dot">.</span>org &middot; May 2026 &middot; Munich</div>
+  <div class="footer-legal">
+    <a href="/">Home</a>
+    <a href="mailto:dominik.grusemann@gmail.com">Contact</a>
+    <a href="/imprint.html">Imprint</a>
+  </div>
 </footer>
 
 </body>

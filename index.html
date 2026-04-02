@@ -632,24 +632,19 @@
   }
 
   .footer-left {
-    font-size: 13px; font-weight: 700; letter-spacing: -0.5px;
-    color: var(--text-tertiary);
+    font-size: 11px; color: var(--text-muted); letter-spacing: 0.3px;
   }
   .footer-left .dot { color: var(--amber); }
 
-  .footer-links {
-    display: flex; gap: 24px; list-style: none;
+  .footer-legal {
+    display: flex; gap: 24px;
   }
-  .footer-links a {
+  .footer-legal a {
     font-size: 11px; color: var(--text-muted); text-decoration: none;
     letter-spacing: 0.5px;
     transition: color 0.2s;
   }
-  .footer-links a:hover { color: var(--amber); }
-
-  .footer-right {
-    font-size: 11px; color: var(--text-muted);
-  }
+  .footer-legal a:hover { color: var(--amber); }
 
   /* ────────────────────────────────────────────
      RESPONSIVE
@@ -1085,16 +1080,12 @@
      FOOTER
 ──────────────────────────────────────────── -->
 <footer>
-  <div class="footer-left">bettervibe<span class="dot">.</span>org</div>
-  <ul class="footer-links">
-    <li><a href="#curriculum">Curriculum</a></li>
-    <li><a href="#instructors">Instructors</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="mailto:dominik.grusemann@gmail.com">Contact</a></li>
-    <li><a href="/privacy.html">Privacy</a></li>
-    <li><a href="/imprint.html">Imprint</a></li>
-  </ul>
-  <div class="footer-right">May 2026 · Munich · First in a series.</div>
+  <div class="footer-left">bettervibe<span class="dot">.</span>org · May 2026 · Munich</div>
+  <div class="footer-legal">
+    <a href="mailto:dominik.grusemann@gmail.com">Contact</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/imprint.html">Imprint</a>
+  </div>
 </footer>
 
 </body>
