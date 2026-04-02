@@ -622,6 +622,71 @@
   }
 
   /* ────────────────────────────────────────────
+     09 · STAY IN THE LOOP
+  ──────────────────────────────────────────── */
+  #updates { background: var(--bg-secondary); }
+
+  .signup-form {
+    display: flex; align-items: center; gap: 0;
+    max-width: 520px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    padding: 4px 4px 4px 16px;
+    transition: border-color 0.2s var(--ease);
+  }
+  .signup-form:focus-within { border-color: var(--amber-dim); }
+
+  .signup-prompt {
+    font-size: 12px; color: var(--text-tertiary);
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .signup-prompt .signup-path { color: var(--green); }
+
+  .signup-input-wrap {
+    display: flex; align-items: center;
+    flex: 1; gap: 4px; min-width: 0;
+  }
+  .signup-input {
+    flex: 1; min-width: 0;
+    background: transparent; border: none; outline: none;
+    font-family: var(--font); font-size: 13px;
+    color: var(--text-primary);
+    padding: 8px 4px;
+    caret-color: var(--amber);
+  }
+  .signup-input::placeholder { color: var(--text-muted); }
+
+  .signup-btn { flex-shrink: 0; padding: 8px 16px; font-size: 11px; }
+
+  .signup-feedback {
+    margin-top: 12px; font-size: 12px;
+    padding: 8px 12px; border-radius: var(--radius);
+    max-width: 520px; display: none;
+  }
+  .signup-feedback.success {
+    display: block;
+    color: var(--green);
+    background: rgba(126, 198, 153, 0.08);
+    border: 1px solid rgba(126, 198, 153, 0.2);
+  }
+  .signup-feedback.error {
+    display: block;
+    color: var(--red);
+    background: rgba(224, 108, 117, 0.08);
+    border: 1px solid rgba(224, 108, 117, 0.2);
+  }
+  .signup-consent {
+    font-size: 11px; color: var(--text-muted);
+    margin-top: 16px; max-width: 520px; line-height: 1.6;
+  }
+  .signup-consent a {
+    color: var(--text-tertiary);
+    text-decoration: underline; text-underline-offset: 2px;
+  }
+  .signup-consent a:hover { color: var(--amber); }
+
+  /* ────────────────────────────────────────────
      FOOTER
   ──────────────────────────────────────────── */
   footer {
@@ -684,6 +749,12 @@
     .event-details { padding: 24px; }
     .tier-card { padding: 20px; }
     .faq-item { padding: 20px; }
+    .signup-form {
+      flex-direction: column; align-items: stretch;
+      padding: 12px; gap: 8px;
+    }
+    .signup-prompt { display: none; }
+    .signup-btn { width: 100%; justify-content: center; }
     footer { padding: 24px 16px; }
   }
 </style>
@@ -1054,6 +1125,46 @@
 </section>
 
 <!-- ───────────────────────────────────────────
+     09 · STAY IN THE LOOP
+──────────────────────────────────────────── -->
+<section id="updates">
+  <div class="max-w">
+    <div class="section-label">09 — Updates</div>
+    <h2 class="section-title">Stay in the loop.</h2>
+    <p class="section-desc" style="margin-bottom: 32px;">
+      Get notified about future dates, early-bird pricing, and new workshop topics.
+    </p>
+
+    <form id="signup-form" class="signup-form" method="POST">
+      <div class="signup-prompt">
+        <span class="signup-path">~/updates</span>&nbsp;$&nbsp;
+      </div>
+      <div class="signup-input-wrap">
+        <input
+          type="email"
+          name="fields[email]"
+          class="signup-input"
+          placeholder="your@email.dev"
+          required
+          autocomplete="email"
+          aria-label="Email address"
+        >
+        <button type="submit" class="btn-ghost signup-btn">subscribe</button>
+      </div>
+      <input type="hidden" name="ml-submit" value="1">
+      <input type="hidden" name="anticsrf" value="true">
+    </form>
+
+    <div id="signup-feedback" class="signup-feedback"></div>
+
+    <p class="signup-consent">
+      By subscribing you agree to our <a href="/privacy.html">privacy policy</a>.
+      We store your email with <a href="https://www.mailerlite.com" target="_blank" rel="noopener">MailerLite</a> (EU-based) and you can unsubscribe anytime.
+    </p>
+  </div>
+</section>
+
+<!-- ───────────────────────────────────────────
      10 · FINAL CTA
 ──────────────────────────────────────────── -->
 <section id="final-cta">
@@ -1088,5 +1199,43 @@
   </div>
 </footer>
 
+<script>
+(function() {
+  var form = document.getElementById('signup-form');
+  var feedback = document.getElementById('signup-feedback');
+  if (!form) return;
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var email = form.querySelector('[name="fields[email]"]');
+    if (!email.value || !email.validity.valid) {
+      feedback.textContent = '→ please enter a valid email address';
+      feedback.className = 'signup-feedback error';
+      return;
+    }
+
+    var btn = form.querySelector('.signup-btn');
+    btn.textContent = 'sending…';
+    btn.disabled = true;
+
+    fetch('https://assets.mailerlite.com/jsonp/2239840/forms/183629273017354022/subscribe', {
+      method: 'POST',
+      body: new FormData(form)
+    }).then(function() {
+      feedback.textContent = '✓ subscribed — you\'re on the list';
+      feedback.className = 'signup-feedback success';
+      form.reset();
+      btn.textContent = 'done ✓';
+    }).catch(function() {
+      feedback.textContent = '→ something went wrong — try again or email us';
+      feedback.className = 'signup-feedback error';
+      btn.textContent = 'subscribe';
+      btn.disabled = false;
+    });
+  });
+
+  fetch('https://assets.mailerlite.com/jsonp/2239840/forms/183629273017354022/takel');
+})();
+</script>
 </body>
 </html>
