@@ -31,7 +31,7 @@ export interface WorkshopEvent {
 const sponsors: Sponsor[] = [
   { name: "Fluensy", url: "https://fluensy.app/", logo: "/public/fluensy-logotext.svg" },
   { name: "Lithus", url: "https://lithus.eu/", logo: "/public/lithus-logo.svg" },
-  { name: "Marbles", url: "https://usemarbles.com/", logo: "/public/marbles-logo.svg" },
+  { name: "Langmail", url: "https://langmail.me/", logo: "/public/langmail-logo.svg" },
 ];
 
 const upcomingPricing: PricingTier[] = [
