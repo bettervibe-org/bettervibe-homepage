@@ -4,12 +4,12 @@ import { getNextEvent } from "../../data/eventHelpers";
 
 const nextEvent = getNextEvent();
 const workshopNote = nextEvent
-    ? `Working through this hands-on — ${nextEvent.dateDisplay}, ${nextEvent.venue}`
-    : "Working through this hands-on — next date TBA";
+    ? `Working through this hands-on · ${nextEvent.dateDisplay}, ${nextEvent.venue}`
+    : "Working through this hands-on · next date TBA";
 ---
 
 <BaseLayout
-    title="A Vibe Coder's Guide — unvibe"
+    title="A Vibe Coder's Guide · unvibe"
     description="33 pages. Three authors. Two years of shipping production code with Claude Code, Cursor, and Codex distilled into nine practices we wish someone had handed us in 2024."
     canonical="https://unvibe.org/guide/"
     ogTitle="A Vibe Coder's Guide to Agentic Engineering"
@@ -21,8 +21,6 @@ const workshopNote = nextEvent
             <span class="path">~/unvibe</span>
             <span class="cmd">$ cat agentic-engineering.bible</span>
         </div>
-
-        <div class="section-label">The Guide</div>
 
         <div class="guide-hero">
             <div>
@@ -62,7 +60,7 @@ const workshopNote = nextEvent
 
         <hr class="divider" />
 
-        <div class="section-label">Updates</div>
+        <h2 class="section-title">Get updates by email.</h2>
 
         <p class="updates-desc">
             Future workshop dates and new editions of the guide, when they
@@ -98,9 +96,9 @@ const workshopNote = nextEvent
 
         <hr class="divider" />
 
-        <div class="section-label">Contents</div>
+        <h2 class="section-title">What's inside.</h2>
 
-        <div class="part-header">Part I — Plan</div>
+        <div class="part-header">Part I · Plan</div>
         <div class="chapter-list">
             <div><span class="chapter-num">01</span>Plan Before You Prompt</div>
             <div><span class="chapter-num">02</span>AGENTS.md / CLAUDE.md</div>
@@ -112,7 +110,7 @@ const workshopNote = nextEvent
             </div>
         </div>
 
-        <div class="part-header">Part II — Implement</div>
+        <div class="part-header">Part II · Implement</div>
         <div class="chapter-list">
             <div>
                 <span class="chapter-num">05</span>Choose Tools For the AI, Not
@@ -123,7 +121,7 @@ const workshopNote = nextEvent
             </div>
         </div>
 
-        <div class="part-header">Part III — Review &amp; Sustain</div>
+        <div class="part-header">Part III · Review &amp; Sustain</div>
         <div class="chapter-list">
             <div>
                 <span class="chapter-num">07</span>Build Fast Feedback Loops
@@ -181,7 +179,7 @@ const workshopNote = nextEvent
                 })
                 .catch(function () {
                     feedback.textContent =
-                        "Something went wrong — try again or email us.";
+                        "Something went wrong. Try again or email us.";
                     feedback.className = "updates-feedback error";
                     btn.textContent = originalLabel;
                     btn.disabled = false;
@@ -213,22 +211,13 @@ const workshopNote = nextEvent
         color: var(--text-secondary);
     }
 
-    .section-label {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        font-size: 10px;
-        font-weight: 500;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        color: var(--amber);
-        margin-bottom: 20px;
-    }
-    .section-label::after {
-        content: "";
-        width: 40px;
-        height: 1px;
-        background: var(--amber-dim);
+    .section-title {
+        font-size: clamp(22px, 3vw, 30px);
+        font-weight: 700;
+        letter-spacing: -1px;
+        line-height: 1.15;
+        color: var(--text-primary);
+        margin-bottom: 16px;
     }
 
     .guide-hero {
@@ -260,7 +249,7 @@ const workshopNote = nextEvent
     }
 
     .guide-desc {
-        font-size: 13px;
+        font-size: 16px;
         color: var(--text-secondary);
         font-weight: 300;
         line-height: 1.85;
@@ -291,7 +280,7 @@ const workshopNote = nextEvent
         border-radius: 4px;
         cursor: pointer;
         font-family: var(--font);
-        font-size: 12px;
+        font-size: 13px;
         font-weight: 600;
         letter-spacing: 0.5px;
         text-decoration: none;
@@ -312,7 +301,7 @@ const workshopNote = nextEvent
         border-radius: 4px;
         cursor: pointer;
         font-family: var(--font);
-        font-size: 12px;
+        font-size: 13px;
         font-weight: 400;
         letter-spacing: 0.5px;
         color: var(--text-secondary);
@@ -327,7 +316,7 @@ const workshopNote = nextEvent
     }
 
     .updates-desc {
-        font-size: 13px;
+        font-size: 16px;
         color: var(--text-secondary);
         font-weight: 300;
         line-height: 1.7;
@@ -345,12 +334,12 @@ const workshopNote = nextEvent
         flex: 1;
         min-width: 0;
         background: transparent;
-        border: 1px solid #4a4d52;
+        border: 1px solid var(--border-strong);
         border-radius: 4px;
         padding: 12px 16px;
         color: var(--text-primary);
         font-family: var(--font);
-        font-size: 12px;
+        font-size: 14px;
         transition: border-color 0.2s var(--ease);
     }
     .updates-input::placeholder {
@@ -367,7 +356,7 @@ const workshopNote = nextEvent
 
     .updates-feedback {
         display: none;
-        font-size: 12px;
+        font-size: 13px;
         line-height: 1.7;
         margin-bottom: 16px;
     }
@@ -381,7 +370,7 @@ const workshopNote = nextEvent
     }
 
     .updates-trust {
-        font-size: 11px;
+        font-size: 12px;
         color: rgba(232, 228, 223, 0.45);
         letter-spacing: 0.3px;
     }
@@ -416,7 +405,7 @@ const workshopNote = nextEvent
     }
 
     .chapter-list {
-        font-size: 13px;
+        font-size: 15px;
         line-height: 2;
         color: var(--text-primary);
         margin-bottom: 28px;
@@ -425,8 +414,8 @@ const workshopNote = nextEvent
     .chapter-num {
         opacity: 0.4;
         display: inline-block;
-        width: 28px;
-        font-size: 12px;
+        width: 32px;
+        font-size: 13px;
     }
 
     .workshop-link-row {
@@ -438,12 +427,12 @@ const workshopNote = nextEvent
     }
 
     .workshop-note {
-        font-size: 12px;
+        font-size: 13px;
         color: var(--text-muted);
     }
 
     .workshop-link {
-        font-size: 12px;
+        font-size: 13px;
         color: var(--amber);
         text-decoration: none;
         transition: color 0.2s;
